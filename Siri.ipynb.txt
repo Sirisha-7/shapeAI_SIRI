@@ -1,0 +1,237 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Siri.ipynb",
+      "provenance": [],
+      "collapsed_sections": []
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Y2-fmz3c6mA5"
+      },
+      "source": [
+        "import requests\n",
+        "from datetime import datetime"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "819HMfEB8WhB"
+      },
+      "source": [
+        "api_key = '5669bc7f1b6e77a76bb15e0aea99580b'\n",
+        "location = input(\"Enter the city name:\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "uOcIG_Pv9gBK"
+      },
+      "source": [
+        "complete_api_link=\"https://api.openweathermap.org/data/2.5/weather?q=\"+location +\"&appid=\"+api_key"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "background_save": true
+        },
+        "id": "r12lg81V-keU",
+        "outputId": "82069ced-a8aa-4701-eda1-639c6f61e182"
+      },
+      "source": [
+        "api_link=requests.get(complete_api_link)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "NameError",
+          "evalue": "ignored",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m<ipython-input-6-f4b815bb1760>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mapi_link\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mrequests\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m \u001b[0;34m(\u001b[0m\u001b[0mcomplete_api_link\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;31mNameError\u001b[0m: name 'requests' is not defined"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "CnF1UJf--4vh"
+      },
+      "source": [
+        "api_data=api_link.json()"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "BeyOSW5k_Ggo"
+      },
+      "source": [
+        "temp_city=((api_data ['main']['temp'])-273.15)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "byaMOIw7_mRw"
+      },
+      "source": [
+        "weather_desc=api_data ['weather'][0]['description ']"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "dLz3OnlaAEzo"
+      },
+      "source": [
+        "hmdt=api_data ['main']['humidity ']"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "GvvfrfKJAev3"
+      },
+      "source": [
+        "wind_spd=api_data ['wind']['speed']"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "cWyzOiaTAe9r"
+      },
+      "source": [
+        "date_time=datetime.now ().strftime(\"%d %b %y | %I:%M:%S %P\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "idvdz1iKBY9s"
+      },
+      "source": [
+        "Print (\"---------------------\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Z_rSznvyBfH6"
+      },
+      "source": [
+        "Print (\"weather stats for - {} || {} \".format(location.upper(),date_time))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "py_feqi0zsoM",
+        "outputId": "22e4b634-b12c-48fc-a20a-6f251c68bf5b"
+      },
+      "source": [
+        "print (\"----------------------\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "----------------------\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "RfpdeJEaz0ia"
+      },
+      "source": [
+        "print(\"current temperature is:{:.2f} degree c\".format(temp_city))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "dojhW7kQ0tAJ"
+      },
+      "source": [
+        "print(\"current weather desc:\",weather_desc)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "RpfPbsqf1Kf-"
+      },
+      "source": [
+        "print (\"current humidity :\",hmdt, '%')"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "soiqHlba2CD2"
+      },
+      "source": [
+        "(\"Current wind speed :\",wind_speed, 'kmph')"
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
